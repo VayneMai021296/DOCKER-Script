@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cKnP0r0rP8g=",
+  "dgSpecHash": "1F8dSsNRla8=",
   "success": true,
   "projectFilePath": "G:\\GIT PROJECT\\DOCKER-Script\\MyAvaloniaApp\\MyAvaloniaApp.csproj",
   "expectedPackageFiles": [
@@ -32,10 +32,7 @@
     "C:\\Users\\VayneMai\\.nuget\\packages\\skiasharp.nativeassets.webassembly\\2.88.8\\skiasharp.nativeassets.webassembly.2.88.8.nupkg.sha512",
     "C:\\Users\\VayneMai\\.nuget\\packages\\skiasharp.nativeassets.win32\\2.88.8\\skiasharp.nativeassets.win32.2.88.8.nupkg.sha512",
     "C:\\Users\\VayneMai\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
-    "C:\\Users\\VayneMai\\.nuget\\packages\\tmds.dbus.protocol\\0.20.0\\tmds.dbus.protocol.0.20.0.nupkg.sha512",
-    "C:\\Users\\VayneMai\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\9.0.2\\microsoft.netcore.app.runtime.linux-x64.9.0.2.nupkg.sha512",
-    "C:\\Users\\VayneMai\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\9.0.2\\microsoft.aspnetcore.app.runtime.linux-x64.9.0.2.nupkg.sha512",
-    "C:\\Users\\VayneMai\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\9.0.2\\microsoft.netcore.app.host.linux-x64.9.0.2.nupkg.sha512"
+    "C:\\Users\\VayneMai\\.nuget\\packages\\tmds.dbus.protocol\\0.20.0\\tmds.dbus.protocol.0.20.0.nupkg.sha512"
   ],
   "logs": []
 }

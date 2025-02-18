@@ -169,3 +169,121 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# .gitignore for C# Avalonia App
+
+## Visual Studio & MSTest files
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# MonoDevelop / Xamarin Studio user preferences
+*.userprefs
+
+## Build results
+
+# Build directories (common for C#, .NET projects)
+bin/
+obj/
+publish/
+
+## Visual Studio temporary files, caches, and settings
+
+.vs/
+
+## NuGet Packages
+
+# NuGet package files
+*.nupkg
+
+# The packages folder can be ignored as NuGet Package Restore is enabled
+**/packages/*
+
+## ReSharper and related tools
+
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## OS Generated Files
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+## Additional files for code coverage, logs, etc.
+
+*.log
+*.tlog
+
+## Avalonia-specific files
+
+# Nếu Avalonia sinh ra các file cache hoặc tạm thời, bạn có thể bỏ qua chúng.
+*.Avalonia*.cache
+
+# Uncomment dòng dưới nếu bạn có thư mục tạm thời riêng (nếu cần)
+#tmp/
+
+
+# CPlusPlus
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+CTestTestfile.cmake
+cmake_install.cmake
+install_manifest.txt
+Makefile
+
+# Build directories (tùy thuộc vào cấu hình build của bạn)
+build/
+_build/
+out/
+
+# Output directories (binaries, libraries,...)
+bin/
+lib/
+Debug/
+Release/
+x64/
+x86/
+
+# Executable files, libraries và object files
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.pdb
+*.idb
+
+# Temporary files and logs
+*.tmp
+*.log
+*.swp
+*.swo
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+*.ncb
+*.sdf
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+

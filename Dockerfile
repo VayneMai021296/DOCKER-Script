@@ -1,42 +1,60 @@
-# Build stage
+# Chọn base image phù hợp cho build
 FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
+
+# Set thư mục làm việc
 WORKDIR /src
 
-# Copy entire solution first
+# Copy file dự án trước để cache dependencies
+COPY *.sln ./
+COPY MyAvaloniaApp/*.csproj MyAvaloniaApp/
+
+# Restore dependencies
+RUN dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
+
+# Copy toàn bộ source code
 COPY . .
 
-# List files to debug
-RUN ls -la
-# Find all csproj files
-RUN find . -name "*.csproj"
+# Build ứng dụng dưới dạng release
+RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
 
-# Restore and build
-RUN dotnet restore **/*.csproj
-RUN dotnet build **/*.csproj -c Release
-RUN dotnet publish **/*.csproj -c Release -o /app/publish
+# Chọn base image phù hợp cho runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS runtime
 
-# Runtime stage
-FROM ubuntu:latest
+# Cài đặt thư viện X11, Mesa, và dbus-x11 để hỗ trợ GUI
+RUN apt-get update && apt-get install -y \
+    libx11-6 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxi6 \
+    libxrandr2 \
+    libxrender1 \
+    libxtst6 \
+    libgtk-3-0 \
+    mesa-utils \
+    x11-apps \
+    xauth \
+    dbus-x11 \
+    xvfb
+
+# Thiết lập biến môi trường X11
+ENV DISPLAY=:99
+ENV QT_X11_NO_MITSHM=1
+
+# Tạo user non-root để chạy ứng dụng an toàn
+RUN useradd -ms /bin/bash avaloniauser 
+
+# Tạo thư mục /tmp/.X11-unix nếu chưa tồn tại và gán quyền
+# Tạo thư mục /tmp/.X11-unix nếu chưa tồn tại, đặt quyền root và gán quyền truy cập
+RUN mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix && chown root:root /tmp/.X11-unix
+
+# Set thư mục làm việc
 WORKDIR /app
 
-# Install dependencies for .NET and Avalonia
-RUN apt-get update && apt-get install -y \
-    wget \
-    apt-transport-https \
-    software-properties-common
-
-# Add Microsoft package repository
-RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
-    && dpkg -i packages-microsoft-prod.deb \
-    && rm packages-microsoft-prod.deb
-
-# Install .NET runtime and Avalonia dependencies
-RUN apt-get update && apt-get install -y \
-    libgtk-3-0 \
-    libx11-xcb1 \
-    libxcb-shape0 \
-    libxcb-xfixes0 \
-    dotnet-runtime-9.0
-
+# Copy file từ build sang runtime
 COPY --from=build /app/publish .
-CMD ["./MyAvaloniaApp"]
+
+# Chạy ứng dụng với user non-root để tăng cường bảo mật
+USER avaloniauser
+
+# Khởi động Xvfb trước khi chạy ứng dụng Avalonia
+CMD ["sh", "-c", "Xvfb :99 -screen 0 1920x1080x24 & dotnet MyAvaloniaApp.dll"]
