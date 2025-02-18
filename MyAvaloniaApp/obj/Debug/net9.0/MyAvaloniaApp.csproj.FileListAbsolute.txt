@@ -65,3 +65,4 @@ G:\GIT PROJECT\DOCKER-Script\MyAvaloniaApp\obj\Debug\net9.0\refint\Avalonia\MyAv
 G:\GIT PROJECT\DOCKER-Script\MyAvaloniaApp\obj\Debug\net9.0\MyAvalon.9DF80BA1.Up2Date
 G:\GIT PROJECT\DOCKER-Script\MyAvaloniaApp\obj\Debug\net9.0\MyAvaloniaApp.genruntimeconfig.cache
 G:\GIT PROJECT\DOCKER-Script\MyAvaloniaApp\obj\Debug\net9.0\ref\MyAvaloniaApp.dll
+G:\GIT PROJECT\DOCKER-Script\MyAvaloniaApp\bin\Debug\net9.0\app.manifest
