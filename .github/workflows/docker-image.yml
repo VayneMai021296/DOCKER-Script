@@ -14,7 +14,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run:  docker build -t myavaloniaapp .
-            docker tag myavaloniaapp vaynemai021296/myavaloniaapp:latest
-            docker push vaynemai021296/myavaloniaapp:latest
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: |
+          vaynemai021296/myavaloniaapp:latest
+          vaynemai021296/myavaloniaapp:1.0.0
+          vaynemai021296/myavaloniaapp:stable
