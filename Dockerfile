@@ -8,13 +8,15 @@ WORKDIR /src
 COPY *.sln ./
 COPY MyAvaloniaApp/*.csproj MyAvaloniaApp/
 
-# Restore dependencies
-RUN dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
-
-# Copy toàn bộ source code
 COPY . .
 
-# Build ứng dụng dưới dạng release
+# List files to debug
+RUN ls -la
+# Find all csproj files
+RUN find . -name "*.csproj"
+
+# Restore and build
+RUN dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
 RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release
 
 # Publish the application
