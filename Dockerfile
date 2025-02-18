@@ -1,5 +1,5 @@
 # Chọn base image phù hợp cho build
-FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Set thư mục làm việc
 WORKDIR /src
@@ -23,7 +23,7 @@ RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release
 RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
 
 # Chọn base image phù hợp cho runtime
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 
 # Cài đặt thư viện X11, Mesa, và dbus-x11 để hỗ trợ GUI
 RUN apt-get update && apt-get install -y \
