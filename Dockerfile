@@ -26,6 +26,9 @@ RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS runtime
 
 # Cài đặt thư viện X11, Mesa, và dbus-x11 để hỗ trợ GUI
+# Chọn base image .NET SDK (chứa cả Runtime)
+
+# Cài đặt thư viện X11, Mesa, và dbus-x11 để hỗ trợ GUI
 RUN apt-get update && apt-get install -y \
     libx11-6 \
     libxcomposite1 \
