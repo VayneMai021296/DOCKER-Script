@@ -26,3 +26,11 @@ jobs:
           vaynemai021296/myavaloniaapp:latest
           vaynemai021296/myavaloniaapp:1.0.0
           vaynemai021296/myavaloniaapp:stable
+        build-args: |
+          PROJECT_PATH=MyAvaloniaApp/MyAvaloniaApp.csproj
+
+    - name: Debug - List files
+      run: ls -R
+
+    - name: Debug - Check .csproj file
+      run: cat MyAvaloniaApp/MyAvaloniaApp.csproj
