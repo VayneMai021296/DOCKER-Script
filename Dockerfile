@@ -20,10 +20,10 @@ RUN ls -la
 RUN find . -name "*.csproj"
 
 # Build the application
-RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release
+RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release --no-restore
 
 # Publish the application
-RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
+RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish --no-restore
 
 # Chọn base image phù hợp cho runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS runtime
