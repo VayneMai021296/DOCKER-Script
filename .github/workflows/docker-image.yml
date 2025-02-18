@@ -18,6 +18,17 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 9.0.0-preview
+
+    - name: Restore dependencies
+      run: dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
+
+    - name: Build project
+      run: dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release --no-restore
+      
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:

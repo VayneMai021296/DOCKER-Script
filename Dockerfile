@@ -8,10 +8,6 @@ WORKDIR /src
 COPY *.sln ./
 COPY MyAvaloniaApp/*.csproj MyAvaloniaApp/
 
-# Restore dependencies
-RUN dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
-
-# Copy the rest of the source code
 COPY . .
 
 # List files to debug
@@ -19,11 +15,12 @@ RUN ls -la
 # Find all csproj files
 RUN find . -name "*.csproj"
 
-# Build the application
-RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release --no-restore
+# Restore and build
+RUN dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
+RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release
 
 # Publish the application
-RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish --no-restore
+RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
 
 # Chọn base image phù hợp cho runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS runtime
@@ -52,6 +49,7 @@ ENV QT_X11_NO_MITSHM=1
 RUN useradd -ms /bin/bash avaloniauser 
 
 # Tạo thư mục /tmp/.X11-unix nếu chưa tồn tại và gán quyền
+# Tạo thư mục /tmp/.X11-unix nếu chưa tồn tại, đặt quyền root và gán quyền truy cập
 RUN mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix && chown root:root /tmp/.X11-unix
 
 # Set thư mục làm việc
