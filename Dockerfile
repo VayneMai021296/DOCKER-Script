@@ -15,6 +15,9 @@ RUN dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
 COPY . .
 
 # Build ứng dụng dưới dạng release
+RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release
+
+# Publish the application
 RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
 
 # Chọn base image phù hợp cho runtime
