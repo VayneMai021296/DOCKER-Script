@@ -15,7 +15,7 @@ public partial class MainWindow : Window
             {
                 Content = new TextBlock
                 {
-                    Text = "Button Clicked!",
+                    Text = "Button Clicked! The first Avalonia app",
                     HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
                     VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
                 },
