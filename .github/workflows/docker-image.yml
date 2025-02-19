@@ -58,9 +58,9 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/avaloniaapp:latest
-            ${{ secrets.DOCKER_USERNAME }}/avaloniaapp:1.0.0
-            ${{ secrets.DOCKER_USERNAME }}/avaloniaapp:stable
+            vaynemai021296/avaloniaapp:latest
+            vaynemai021296/avaloniaapp:1.0.0
+            vaynemai021296/avaloniaapp:stable
 
       - name: ✅ Verify Docker image
         run: docker run --rm -e DISPLAY=:99 ${{ secrets.DOCKER_USERNAME }}/avaloniaapp:latest
