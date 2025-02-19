@@ -24,6 +24,7 @@ jobs:
         run: dotnet test MyAvaloniaApp/MyAvaloniaApp.csproj --verbosity diagnostic # no-build
 
   build:
+    needs: test 
     runs-on: ubuntu-latest
 
     steps:
