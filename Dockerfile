@@ -63,4 +63,4 @@ COPY --from=build /app/publish .
 USER avaloniauser
 
 # Khởi động Xvfb trước khi chạy ứng dụng Avalonia
-CMD ["sh", "-c", "Xvfb :99 -screen 0 1920x1080x24 & dotnet MyAvaloniaApp.dll"]
+CMD ["dotnet", "MyAvaloniaApp.dll"]

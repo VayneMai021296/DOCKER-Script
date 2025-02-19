@@ -70,12 +70,12 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64 #,linux/arm64
           push: true
           tags: |
-            vaynemai021296/avaloniaapp:latest
-            vaynemai021296/avaloniaapp:1.0.0
-            vaynemai021296/avaloniaapp:stable
+            vaynemai021296/matrixshowing:latest
+            vaynemai021296/matrixshowing:1.0.0
+            vaynemai021296/matrixshowing:stable
 
-      #- name: ✅ Verify Docker image
-        #run: docker run --rm -e DISPLAY=:99 vaynemai021296/avaloniaapp:latest
+      - name: ✅ Verify Docker image
+        run: docker run --rm vaynemai021296/matrixshowing:latest
