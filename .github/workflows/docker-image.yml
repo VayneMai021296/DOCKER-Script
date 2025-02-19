@@ -48,7 +48,10 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/avalonia-app:latest
+          tags: |
+            vaynemai021296/avaloniaapp:latest
+            vaynemai021296/avaloniaapp:1.0.0
+            vaynemai021296/avaloniaapp:stable
 
       - name: ✅ Run container to verify
         run: docker run --rm -e DISPLAY=:99 ${{ secrets.DOCKER_USERNAME }}/avalonia-app:latest
