@@ -1,34 +1,31 @@
-# Chọn base image phù hợp cho build
+# ==========================
+#   1) Stage build
+# ==========================
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
-# Set thư mục làm việc
+# Đặt thư mục làm việc
 WORKDIR /src
 
-# Copy file dự án trước để cache dependencies
-COPY *.sln ./
-COPY MyAvaloniaApp/*.csproj MyAvaloniaApp/
+# Sao chép toàn bộ mã nguồn (bao gồm .sln, .csproj, ...)
+COPY . . 
 
-COPY . .
-
-# List files to debug
+# (Tuỳ chọn) Liệt kê file để debug
 RUN ls -la
-# Find all csproj files
 RUN find . -name "*.csproj"
 
-# Restore and build
+# Restore và build
 RUN dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
-RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release
+RUN dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release --no-restore
 
-# Publish the application
-RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
+# Publish
+RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish --no-build
 
-# Chọn base image phù hợp cho runtime
+# ==========================
+#   2) Stage runtime
+# ==========================
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS runtime
 
-# Cài đặt thư viện X11, Mesa, và dbus-x11 để hỗ trợ GUI
-# Chọn base image .NET SDK (chứa cả Runtime)
-
-# Cài đặt thư viện X11, Mesa, và dbus-x11 để hỗ trợ GUI
+# Cài đặt các thư viện cần thiết cho GUI (X11, GTK, v.v.)
 RUN apt-get update && apt-get install -y \
     libx11-6 \
     libxcomposite1 \
@@ -44,24 +41,25 @@ RUN apt-get update && apt-get install -y \
     dbus-x11 \
     xvfb
 
-# Thiết lập biến môi trường X11
+# Thiết lập biến môi trường cho X11
 ENV DISPLAY=:99
 ENV QT_X11_NO_MITSHM=1
 
-# Tạo user non-root để chạy ứng dụng an toàn
-RUN useradd -ms /bin/bash avaloniauser 
+# Tạo user không phải root
+RUN useradd -ms /bin/bash avaloniauser
 
-# Tạo thư mục /tmp/.X11-unix nếu chưa tồn tại và gán quyền
-# Tạo thư mục /tmp/.X11-unix nếu chưa tồn tại, đặt quyền root và gán quyền truy cập
-RUN mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix && chown root:root /tmp/.X11-unix
+# Tạo thư mục /tmp/.X11-unix nếu chưa có, đặt quyền truy cập
+RUN mkdir -p /tmp/.X11-unix \
+    && chmod 1777 /tmp/.X11-unix \
+    && chown root:root /tmp/.X11-unix
 
-# Set thư mục làm việc
+# Đặt thư mục làm việc
 WORKDIR /app
 
-# Copy file từ build sang runtime
-COPY --from=build /app/publish .
+# Sao chép kết quả publish từ stage build
+COPY --from=build /app/publish . 
 
-# Chạy ứng dụng với user non-root để tăng cường bảo mật
+# Chạy ứng dụng với user không phải root
 USER avaloniauser
 
 # Khởi động Xvfb trước khi chạy ứng dụng Avalonia
