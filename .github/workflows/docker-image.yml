@@ -63,4 +63,4 @@ jobs:
             vaynemai021296/avaloniaapp:stable
 
       - name: ✅ Verify Docker image
-        run: docker run --rm -e DISPLAY=:99 ${{ secrets.DOCKER_USERNAME }}/avaloniaapp:latest
+        run: docker run --rm -e DISPLAY=:99 vaynemai021296/avaloniaapp:latest
