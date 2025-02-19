@@ -25,10 +25,10 @@ jobs:
         run: dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
 
       - name: 🔨 Build application
-        run: dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release --no-restore
+        run: dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj --configuration  Release --no-restore
 
       - name: 📦 Publish application
-        run: dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o app/publish --no-build
+        run: dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -configuration Release --output app/publish --no-build
 
       - name: 📋 List files for debugging
         run: ls -la app/publish
