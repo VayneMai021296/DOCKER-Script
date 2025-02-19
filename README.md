@@ -143,3 +143,11 @@ Hoặc deploy lên **AWS ECS, Kubernetes (K8s)**, v.v.
 5. **Đưa lên Cloud** để deploy trên môi trường production.
 
 ⚡ Xong! Bạn đã deploy thành công dự án bằng Docker! 🚀
+
+---
+
+## 📚 Tài liệu tham khảo
+- [Docker Documentation](https://docs.docker.com/)
+- [Docker Hub](https://hub.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
