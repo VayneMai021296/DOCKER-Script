@@ -21,17 +21,17 @@ jobs:
         with:
           dotnet-version: 9.0
 
-      - name: 🛠 Restore dependencies
-        run: dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
+      # - name: 🛠 Restore dependencies
+      #   run: dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
 
-      - name: 🔨 Build application
-        run: dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj --configuration  Release --no-restore
+      # - name: 🔨 Build application
+      #   run: dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj --configuration  Release --no-restore
 
-      - name: 📦 Publish application
-        run: dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -configuration Release --output app/publish --no-build
+      # - name: 📦 Publish application
+      #   run: dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -configuration Release --output app/publish --no-build
 
-      - name: 📋 List files for debugging
-        run: ls -la app/publish
+      # - name: 📋 List files for debugging
+      #   run: ls -la app/publish
 
       - name: 🐳 Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
