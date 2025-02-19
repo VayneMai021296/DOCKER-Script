@@ -26,9 +26,11 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-  <None Include="app.manifest">
-    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-  </None>
-</ItemGroup>
+
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
 </Project>
