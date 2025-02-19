@@ -21,7 +21,7 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: 🧪 Run tests
-        run: dotnet test MyAvaloniaApp/MyAvaloniaApp.csproj --verbosity diagnostic # no-build
+        run: dotnet test MyAvaloniaApp/MyAvaloniaApp.csproj --verbosity normal # no-build
 
   build:
     needs: test 
