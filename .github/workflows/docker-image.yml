@@ -21,7 +21,7 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: 🧪 Run tests
-        run: dotnet test MyAvaloniaApp.csproj --verbosity normal # no-build
+        run: dotnet test MyAvaloniaApp/MyAvaloniaApp.csproj --verbosity normal # no-build
 
   build:
     needs: test 
@@ -37,13 +37,13 @@ jobs:
           dotnet-version: '9.0.x'  # Điều chỉnh version phù hợp với dự án của bạn
 
       - name: 📦 Restore dependencies
-        run: dotnet restore MyAvaloniaApp.csproj
+        run: dotnet restore MyAvaloniaApp/MyAvaloniaApp.csproj
 
       - name: 🔨 Build application
-        run: dotnet build MyAvaloniaApp.csproj -c Release --no-restore
+        run: dotnet build MyAvaloniaApp/MyAvaloniaApp.csproj -c Release --no-restore
 
       - name: 🚀 Publish application
-        run: dotnet publish MyAvaloniaApp.csproj -c Release -o app/publish --no-build
+        run: dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o app/publish --no-build
 
       - name: 📋 List published files
         run: ls -la app/publish
