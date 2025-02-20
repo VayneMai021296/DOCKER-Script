@@ -26,7 +26,7 @@ RUN dotnet publish MyAvaloniaApp/MyAvaloniaApp.csproj -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS runtime
 
 # Sử dụng Ubuntu 22.04 (không chỉ định `--platform`)
-FROM ubuntu:22.04
+#FROM ubuntu:22.04
 
 # Cập nhật danh sách package và cài đặt thư viện GUI cần thiết
 #RUN apt-get update && apt-get install -y \
