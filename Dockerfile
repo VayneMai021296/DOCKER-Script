@@ -42,7 +42,8 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS runtime
 #     xvfb
 # Update 
 RUN apt-get update
-
+RUN sudo apt update && sudo apt install -y qemu qemu-user-static
+RUN docker run --rm --privileged tonistiigi/binfmt --install all
 # Thiết lập biến môi trường cho X11
 #ENV DISPLAY=:99
 #ENV QT_X11_NO_MITSHM=1
