@@ -70,16 +70,12 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: |
             vaynemai021296/matrixshowing:latest
             vaynemai021296/matrixshowing:1.0.0
             vaynemai021296/matrixshowing:stable
-          build-args: |
-            BUILDKIT_INLINE_CACHE=1
-          cache-from: type=registry,ref=vaynemai021296/matrixshowing:cache
-          cache-to: type=registry,ref=vaynemai021296/matrixshowing:cache,mode=max
 
       - name: ✅ Verify Docker image
         run: docker run --rm vaynemai021296/matrixshowing:latest
