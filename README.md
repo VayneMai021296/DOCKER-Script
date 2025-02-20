@@ -1,4 +1,4 @@
-# matrixshowing
+# 📚 matrixshowing
 * matrixshowing là ứng dụng in ra màn hình console các chữ số được đánh số từ 1 tới giá trị (số hàng X số cột)
 * Ứng dụng được viết trên nền tảng .NET 9.0 
 
@@ -21,8 +21,7 @@
 | [CPlus_DOCKER](Q&A/CPlusDOCKER.md) | Cách triển khai ứng dụng C++ trong Docker. | 
 | [Python_Docker](Q&A/Python_Docker.md)  | Cách triển khai ứng dụng Python trong Docker. |
 |[Fix_Docker_Manifest_Error](Q&A/Fix_Docker_Manifest_Error.md)| Cách khắc phục lỗi khi build image Docker. |
-|[Fix_QEMU_Installation_on_Windows_WSL](Q&A/Fix_QEMU_Installation_on_Windows_WSL.md)| Cách khắc phục lỗi khi cài đặt 
-qemu trên Windows WSL. |
+|[Fix_QEMU_Installation_on_Windows_WSL](Q&A/Fix_QEMU_Installation_on_Windows_WSL.md)| Cách khắc phục lỗi khi cài đặt qemu trên Windows WSL. |
 |[SSH_Remote_Management](Q&A/SSH_Remote_Management.md)| Cách sử dụng SSH để remote và quản lý hệ thống. |
 
 ## 📚 Tài liệu tham khảo
